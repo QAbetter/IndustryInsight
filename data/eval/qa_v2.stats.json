@@ -1,0 +1,23 @@
+{
+  "total": 61,
+  "answerable": 53,
+  "unanswerable": 8,
+  "with_evidence": 53,
+  "by_category": {
+    "battery": 15,
+    "charging": 9,
+    "competition": 10,
+    "market": 10,
+    "outlook": 2,
+    "policy": 4,
+    "profit": 3,
+    "unanswerable": 8
+  },
+  "by_difficulty": {
+    "easy": 31,
+    "hard": 15,
+    "medium": 15
+  },
+  "generator": "heuristic",
+  "chunks": 10
+}

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ topic }} · 行业研究报告</title>
+<style>
+  :root {
+    --ink: #16202c;
+    --muted: #5f6b7a;
+    --line: #e3e8ef;
+    --brand: #1f5eff;
+    --brand-soft: #eef3ff;
+    --bg: #f4f6f9;
+    --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+    line-height: 1.85;
+    font-size: 15px;
+  }
+  .page { max-width: 980px; margin: 0 auto; padding: 40px 24px 64px; }
+  .hero {
+    background: linear-gradient(135deg, #0f1f3d 0%, #1f3f7a 55%, #1f5eff 100%);
+    color: #fff;
+    border-radius: 18px;
+    padding: 36px 40px 30px;
+    box-shadow: 0 18px 40px rgba(15, 31, 61, .18);
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    opacity: .72;
+    margin-bottom: 12px;
+  }
+  .hero h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.35; font-weight: 700; }
+  .hero .subtitle { margin: 0; opacity: .82; font-size: 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .chip {
+    border: 1px solid rgba(255,255,255,.28);
+    background: rgba(255,255,255,.10);
+    color: #fff;
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 12px;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+  .stat span { display: block; color: var(--muted); font-size: 12px; }
+  .stat strong { font-size: 26px; font-weight: 700; color: var(--ink); }
+  .stat em { font-style: normal; font-size: 12px; color: var(--muted); margin-left: 4px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 34px 40px;
+    margin-top: 18px;
+  }
+  .body h1, .body h2, .body h3 { line-height: 1.45; }
+  .body h1 { font-size: 26px; margin: 8px 0 18px; }
+  .body h2 {
+    font-size: 21px;
+    margin: 34px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--brand);
+  }
+  .body h3 { font-size: 17px; margin: 24px 0 8px; color: #23344a; }
+  .body p { margin: 10px 0; }
+  .body ul, .body ol { padding-left: 22px; }
+  .body li { margin: 6px 0; }
+  .body blockquote {
+    margin: 18px 0;
+    padding: 12px 18px;
+    background: var(--brand-soft);
+    border-left: 3px solid var(--brand);
+    color: #33425a;
+    border-radius: 0 10px 10px 0;
+  }
+  .body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 13.5px;
+  }
+  .body th, .body td {
+    border: 1px solid var(--line);
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .body th { background: #f6f8fb; font-weight: 600; }
+  .body tr:nth-child(even) td { background: #fbfcfe; }
+  .body code { background: #f2f5f9; padding: 2px 5px; border-radius: 5px; font-size: 13px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .section-title { margin: 0 0 14px; font-size: 18px; }
+  .metrics-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .metrics-table th, .metrics-table td { border-bottom: 1px solid var(--line); padding: 9px 8px; text-align: left; }
+  .metrics-table th { color: var(--muted); font-weight: 500; }
+  .metrics-table td:last-child, .metrics-table th:last-child { text-align: right; }
+  .footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 28px; }
+  @media (max-width: 720px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .hero, .card { padding: 24px 20px; }
+    .page { padding: 20px 12px 40px; }
+    .hero h1 { font-size: 24px; }
+  }
+  @media print {
+    body { background: #fff; }
+    .page { max-width: none; padding: 0; }
+    .hero { box-shadow: none; border-radius: 0; }
+    .card { border: none; padding: 20px 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="eyebrow">IndustryInsight · Multi-Agent Research</div>
+    <h1>{{ topic }}</h1>
+    <p class="subtitle">检索 → 解析 → 分析 → 成稿 · 自动化行业研究报告</p>
+    <div class="chips">
+      <span class="chip">{{ generated_at }}</span>
+      <span class="chip">模型 {{ model }}</span>
+      <span class="chip">RAG Top-K {{ top_k }} / 阈值 {{ threshold }}</span>
+      <span class="chip">Run {{ run_id }}</span>
+    </div>
+  </header>
+
+  <section class="stats">
+    <div class="stat"><span>正文字数</span><strong>{{ "{:,}".format(chars) }}</strong><em>字</em></div>
+    <div class="stat"><span>证据引用</span><strong>{{ citations }}</strong><em>处</em></div>
+    <div class="stat"><span>证据条目</span><strong>{{ evidence_count }}</strong><em>条</em></div>
+    <div class="stat"><span>生成耗时</span><strong>{{ elapsed_s }}</strong><em>秒</em></div>
+  </section>
+
+  <section class="card body">
+    {{ body_html|safe }}
+  </section>
+
+  <section class="card">
+    <h2 class="section-title">运行指标</h2>
+    <p class="meta">
+      总 Token {{ "{:,}".format(total_tokens) }} · LLM 调用 {{ llm_calls }} 次 · 工具调用 {{ tool_calls }} 次 ·
+      估算成本 ${{ "%.4f"|format(cost_usd) }}
+    </p>
+    <table class="metrics-table">
+      <thead>
+        <tr><th>阶段</th><th>LLM 调用</th><th>Token</th><th>耗时(ms)</th></tr>
+      </thead>
+      <tbody>
+        {% for row in stage_rows %}
+        <tr>
+          <td>{{ row.stage }}</td>
+          <td>{{ row.calls }}</td>
+          <td>{{ "{:,}".format(row.tokens) }}</td>
+          <td>{{ row.latency }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4">本次运行未记录指标</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2 class="section-title">证据索引</h2>
+    {% if evidence_items %}
+    <table class="metrics-table">
+      <thead><tr><th>编号</th><th>证据</th><th>来源</th></tr></thead>
+      <tbody>
+        {% for item in evidence_items %}
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.claim }}</td>
+          <td>{{ item.source or item.url }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="meta">本次运行未获得外部证据。</p>
+    {% endif %}
+  </section>
+
+  <div class="footer">
+    IndustryInsight · {{ provider }} · 报告由多 Agent 自动生成，不构成投资建议
+  </div>
+</div>
+</body>
+</html>

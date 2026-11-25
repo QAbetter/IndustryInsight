@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.pytest_cache/
+
+# 运行时产物
+runs/
+data/index/
+data/index_demo/
+data/chroma/
+data/uploads/
+data/raw/*.pdf
+data/raw/*.docx
+data/raw/*.md
+data/raw/*.txt
+
+# 系统文件
+.DS_Store
+Thumbs.db

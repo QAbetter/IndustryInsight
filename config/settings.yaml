@@ -1,0 +1,54 @@
+llm:
+  provider: mock            # mock | openai | deepseek | qwen | moonshot | zhipu
+  model: ""                 # 留空则使用 provider 预设
+  base_url: null
+  api_key_env: null
+  temperature: 0.3
+  max_tokens: 8192
+  timeout: 120
+  max_retries: 2
+  json_mode: false
+
+rag:
+  backend: local            # local（内置 NumPy 向量库）| chroma
+  embedding: zhipu          # zhipu（GLM embedding-3）| openai | hashing（离线）
+  embedding_model: embedding-3
+  embedding_api_key_env: ZHIPU_API_KEY
+  embedding_base_url: null  # 留空使用 https://open.bigmodel.cn/api/paas/v4/
+  dim: 2048                 # 仅 hashing 生效；远程 Embedding 自动探测维度
+  chunk_size: 900
+  chunk_overlap: 150
+  top_k: 5
+  score_threshold: 0.15
+  persist_dir: data/index
+  chroma_dir: data/chroma
+  collection: industry_reports
+
+search:
+  provider: fixture         # fixture（离线 fixtures）| tavily | duckduckgo | auto
+  max_results: 5
+  timeout: 20
+  fixture_dir: data/fixtures/search
+  tavily_api_key_env: TAVILY_API_KEY
+
+fetch:
+  offline: true
+  timeout: 20
+  max_chars: 4000
+  fixture_dir: data/fixtures/pages
+
+pipeline:
+  max_react_steps: 7
+  max_coverage_rounds: 2
+  max_validation_retries: 2
+  max_task_retries: 1
+  target_chars: 8000
+  parallel: true
+  max_workers: 2
+  output_dir: runs
+  max_dep_chars: 20000
+  max_observation_chars: 3000
+
+observability:
+  input_price_per_1k: 0.00015
+  output_price_per_1k: 0.0006

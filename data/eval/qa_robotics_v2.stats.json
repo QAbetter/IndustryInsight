@@ -1,0 +1,22 @@
+{
+  "total": 501,
+  "answerable": 493,
+  "unanswerable": 8,
+  "with_evidence": 493,
+  "by_category": {
+    "competition": 10,
+    "financial": 301,
+    "market": 61,
+    "outlook": 21,
+    "policy": 18,
+    "product": 82,
+    "unanswerable": 8
+  },
+  "by_difficulty": {
+    "easy": 381,
+    "hard": 2,
+    "medium": 118
+  },
+  "generator": "llm",
+  "chunks": 180
+}
